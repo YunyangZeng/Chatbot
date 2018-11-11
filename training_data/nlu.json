@@ -1,0 +1,67 @@
+## intent:greet
+- hey
+- hello
+- hi
+- good morning
+- good evening
+- hey there
+- what's up
+- how are you
+- nice to meet you
+- good to see you
+## intent:price search
+- I want to know the [price](price) of [google](company)
+- What is the [price](price) of [apple](company)
+- Give me the [price](price) of [Alibaba](company)
+- [How much](price) is [tencent](company) 
+- show me [Lockheed martin](company) [price](price)  
+- tell me the [price](price) of [amazon](company)
+- id like to know the [price](price) of [amazon](company)
+- [AAPL](company) [price](price) 
+## intent:specify company
+- I want [Ford](company)
+- [Toyota](company)
+- How about [Yahoo]
+## intent:appreciate
+- thanks!
+- thank you
+- thx
+- thanks very much
+## intent:trading volume search
+- I want to know the [trading volume](trading volume) of [amazon](company)
+- What is the [trading volume](trading volume) of [apple](company)
+- Give me the [trading volume](trading volume) of [Alibaba](company)
+- show me [Lockheed Martin](company) [trading volume](price)  
+- tell me the [trading volume](trading volume) of [amazon](company)
+- id like to know the [trading volume](trading volume) of [amazon](company)
+- [AAPL](company) [trading volume](trading volume) 
+## intent:market value search
+- Show me the [market value](market value) of [apple](company)
+- I want to know the [market value](market value) of [amazon](company)
+- Give me the [market value](market value) of [Alibaba](company)
+- show me [Lockheed Martin](company) [market value](market value)  
+- tell me the [market value](market value) of [amazon](company)
+- id like to know the [market value](market value) of [amazon](company)
+- [AAPL](company) [market value](market value)
+## intent:deny
+- Nothing
+- No
+- Nope
+- Do not do it
+## intent:confirm
+- Yes
+- Sure
+- Yep
+## intent:specify company
+-The name is [Amazon](company)
+-The name is [Google](company)
+-[Google](company)
+-The name is [Tencent](company)
+-The name is [Tesla](company)
+-Tell me something about [Google](company)
+-Give me some information about [Amazon](company)
+-I want to know something about [Apple](company)
+
+
+
+"""
