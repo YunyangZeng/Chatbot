@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Oct 28 15:16:19 2018
-
-@author: dell
-"""
 import sys
 import pyttsx3
 import random
@@ -132,7 +126,6 @@ def error_check3(CPN):
 '''bot reply under each state and pending combination'''
 def bot_reply(intent,state,pending,Org,pending_action,d):
     if state==0:#INIT
-        print('state=0')
         if intent in 'bcd' and Org is not None:
           
             pending,pending_action,state=0,None,2
@@ -147,7 +140,6 @@ def bot_reply(intent,state,pending,Org,pending_action,d):
             pending,pending_action,state=1,1,0
             d['company'],d['function']=None,None
     elif state==1:#Specify company
-        print('state=1')
         if (intent=='h') and (d['company'] is None) and (Org is not None):
             pending,pending_action,state=0,None,2
             d['company']=Org
@@ -161,8 +153,7 @@ def bot_reply(intent,state,pending,Org,pending_action,d):
             d['function']=intent
         elif intent=='e'or'f'or'i':
             pending,pending_action,state=1,2,1       
-    elif state==2:#company specified
-        print('state=2')        
+    elif state==2:#company specified      
         if intent in 'bcd':
             if Org is not None:#
                 pending,pending_action,state=0,None,1
@@ -174,7 +165,6 @@ def bot_reply(intent,state,pending,Org,pending_action,d):
 
             
     elif state==3:#information found
-        print('state=3')
         if intent=='j':
             state=5
         elif intent=='i':
@@ -261,7 +251,7 @@ if __name__ == "__main__":
         Org=Check_Org(entities)
         intent_=(check_intents(intent))       
         dictionary,pending,pending_action,state=bot_reply(intent_,state,pending,Org,pending_action,dictionary)  
-        if state==5:
+        if state==END:
             my_friend.send(get_chatbotanswer('See you.'))
             sys.exit()        
         action=pending_actions()       
@@ -274,32 +264,32 @@ if __name__ == "__main__":
             if dictionary['function']=='b':               
                 if error_check1(CPN)==1:      
                     p_CPN=CPN.get_price()
-                    state=3
+                    state=FOUND
                     my_friend.send(get_chatbotanswer('Ok,I have found it! The price of {0} is {1}$'.format(dictionary['company'],p_CPN) ))
                 else:     
                     my_friend.send(get_chatbotanswer('Information of company not found'))
-                    state=4
+                    state=NOTFOUND
             if dictionary['function']=='c':
                 if error_check2(CPN)==1:                
                     mv_CPN=CPN.get_volume()
                     my_friend.send(get_chatbotanswer('Ok,I have found it!'))
-                    state=3
+                    state=FOUND
                     my_friend.send(get_chatbotanswer('The volume of {0} is {1}'.format(dictionary['company'],mv_CPN) ))
                 else: 
                     
                     my_friend.send(get_chatbotanswer('Information of company not found'))
-                    state=4            
+                    state=NOTFOUND            
             if dictionary['function']=='d':
                 if error_check3(CPN)==1:                
                     mc_CPN=CPN.get_market_cap()
                     my_friend.send(get_chatbotanswer('Ok,I have found it!'))
-                    state=3
+                    state=FOUND
                     my_friend.send(get_chatbotanswer('The market value of {0} is {1}$'.format(dictionary['company'],mc_CPN)))  
                 else:                    
                     my_friend.send(get_chatbotanswer('Information not found'))
-                    state=4
-        if state == 3 or state==4 :
+                    state=NOTFOUND
+        if state == FOUND or state==NOTFOUND :
             my_friend.send(get_chatbotanswer('Do you have other questions? Say "quit" to quit'))
-            state=0
+            state=INIT
     
             
